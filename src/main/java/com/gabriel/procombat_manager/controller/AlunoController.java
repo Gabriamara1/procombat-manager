@@ -1,5 +1,4 @@
-package com.gabriel.procombat_manager.domain.entity;
-
+package com.gabriel.procombat_manager.controller;
 import com.gabriel.procombat_manager.domain.entity.Aluno;
 import com.gabriel.procombat_manager.domain.entity.AlunoStatus;
 import com.gabriel.procombat_manager.dto.AlunoRequest;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/alunos")
 public class AlunoController {

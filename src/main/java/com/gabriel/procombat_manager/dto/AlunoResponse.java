@@ -1,6 +1,7 @@
 package com.gabriel.procombat_manager.dto;
 
 
+import com.gabriel.procombat_manager.domain.entity.AlunoStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +15,7 @@ public class AlunoResponse {
     private String email;
     private String telefone;
     private LocalDate dataNascimento;
-    private String status;
-
+    private AlunoStatus status;
 
 }
 

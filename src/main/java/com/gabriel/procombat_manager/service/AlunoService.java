@@ -38,7 +38,7 @@ public class AlunoService {
         resp.setEmail(salvo.getEmail());
         resp.setTelefone(salvo.getTelefone());
         resp.setDataNascimento(salvo.getDataNascimento());
-        resp.setStatus(salvo.getStatus().name());
+        resp.setStatus(salvo.getStatus());
 
         return resp;
     }
@@ -65,7 +65,7 @@ public class AlunoService {
         r.setEmail(a.getEmail());
         r.setTelefone(a.getTelefone());
         r.setDataNascimento(a.getDataNascimento());
-        r.setStatus(a.getStatus().name());
+        r.setStatus(a.getStatus());
         return r;
     }
 
