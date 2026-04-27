@@ -1,9 +1,11 @@
 package com.gabriel.procombat_manager.service;
+
 import com.gabriel.procombat_manager.domain.entity.Aluno;
 import com.gabriel.procombat_manager.domain.entity.AlunoStatus;
 import com.gabriel.procombat_manager.dto.AlunoRequest;
 import com.gabriel.procombat_manager.dto.AlunoResponse;
 import com.gabriel.procombat_manager.repository.AlunoRepository;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,7 @@ public class AlunoService {
             super(message);
         }
     }
+
     private AlunoResponse toResponse(Aluno a) {
         AlunoResponse r = new AlunoResponse();
         r.setId(a.getId());
@@ -76,7 +79,6 @@ public class AlunoService {
     }
 
 
-
     public List<Aluno> listar() {
         return alunoRepository.findAll();
     }
@@ -92,16 +94,16 @@ public class AlunoService {
     }
 
     public AlunoResponse ativar(Long id) {
-        Aluno aluno = buscarPorId(id);     // ENTITY ✅
-        aluno.setStatus(AlunoStatus.ATIVO);      // ENUM ✅
+        Aluno aluno = buscarPorId(id);
+        aluno.setStatus(AlunoStatus.ATIVO);      // ENUM
 
-        Aluno salvo = alunoRepository.save(aluno); // salva ENTITY ✅
-        return toResponse(salvo);                // retorna DTO ✅
+        Aluno salvo = alunoRepository.save(aluno); // salva ENTITY
+        return toResponse(salvo);                // retorna DTO
     }
 
     public AlunoResponse atualizar(Long id, AlunoRequest dto) {
 
-        Aluno aluno = buscarPorId(  id);
+        Aluno aluno = buscarPorId(id);
 
         aluno.setNome(dto.getNome());
         aluno.setEmail(dto.getEmail());
@@ -113,9 +115,11 @@ public class AlunoService {
         return toResponse(salvo);
     }
 
+    public AlunoResponse deletar(Long id) {
+        Aluno aluno = buscarPorId(id);
+        alunoRepository.deleteById(id);
 
+        return toResponse(aluno);
 
-
-
-
+    }
 }

@@ -1,11 +1,11 @@
 package com.gabriel.procombat_manager.controller;
+
 import com.gabriel.procombat_manager.domain.entity.Aluno;
 import com.gabriel.procombat_manager.domain.entity.AlunoStatus;
 import com.gabriel.procombat_manager.dto.AlunoRequest;
 import com.gabriel.procombat_manager.dto.AlunoResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PatchMapping;
-
 import com.gabriel.procombat_manager.service.AlunoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,21 +29,20 @@ public class AlunoController {
     }
 
 
-
     @GetMapping("/{id}")
     public Aluno buscarPorId(@PathVariable Long id) {
         return alunoService.buscarPorId(id);
     }
 
-     @GetMapping
-     public List<Aluno> listar(@RequestParam(name = "status", required = false) AlunoStatus status) {
-         if (status != null) {
-             return alunoService.listarPorStatus(status);
-         }
-         return alunoService.listar();
-     }
+    @GetMapping
+    public List<Aluno> listar(@RequestParam(name = "status", required = false) AlunoStatus status) {
+        if (status != null) {
+            return alunoService.listarPorStatus(status);
+        }
+        return alunoService.listar();
+    }
 
-         @PatchMapping("/{id}/inativar")
+    @PatchMapping("/{id}/inativar")
     public Aluno inativar(@PathVariable Long id) {
         return alunoService.inativar(id);
     }
@@ -61,6 +60,12 @@ public class AlunoController {
         return alunoService.atualizar(id, alunoRequest);
     }
 
+    @DeleteMapping("/{id}")
+    public AlunoResponse deletar(
+            @PathVariable Long id
+    ) {
+        return alunoService.deletar(id);
+    }
 
 
 }
